@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-champagne text-ink font-sans antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(245,230,211,0.7), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(249,242,232,0.9), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection { @apply bg-ink text-cream; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d9cab4; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a227; }
+
+@layer components {
+  .glass {
+    @apply bg-white/60 backdrop-blur-md border border-white/50 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-ink/80 backdrop-blur-md border border-white/10;
+  }
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.32em] text-ink/50 font-medium;
+  }
+  .btn-luxe {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-ink/90 hover:shadow-lift active:scale-[0.98] disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 bg-transparent px-7 py-3 text-sm font-medium tracking-wide transition-all duration-300 hover:border-ink hover:bg-ink hover:text-cream;
+  }
+  .card-luxe {
+    @apply rounded-2xl bg-white shadow-soft overflow-hidden;
+  }
+  .field {
+    @apply w-full rounded-xl border border-ink/15 bg-white/70 px-4 py-3 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/10 placeholder:text-ink/35;
+  }
+  .link-underline {
+    @apply relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-ink after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   Admin dark mode — scoped to the .dark wrapper (AdminLayout).
+   Retints the surface utilities the admin pages use, so the
+   whole console themes coherently without per-page edits.
+   The storefront never receives .dark, so it is unaffected.
+   ============================================================ */
+.dark { color-scheme: dark; }
+
+.dark .bg-champagne { background-color: #131110; }
+.dark .bg-white { background-color: #1e1b18; }
+.dark .bg-white\/70 { background-color: rgba(30, 27, 24, 0.7); }
+.dark .bg-white\/60 { background-color: rgba(30, 27, 24, 0.6); }
+.dark .bg-white\/40 { background-color: rgba(30, 27, 24, 0.4); }
+.dark .bg-cream { background-color: rgba(245, 230, 211, 0.08); }
+.dark .bg-ink\/5 { background-color: rgba(236, 227, 213, 0.06); }
+.dark .bg-ink\/\[0\.02\] { background-color: rgba(236, 227, 213, 0.035); }
+
+.dark .text-ink { color: #ECE3D5; }
+.dark .text-ink\/70 { color: rgba(236, 227, 213, 0.72); }
+.dark .text-ink\/60 { color: rgba(236, 227, 213, 0.62); }
+.dark .text-ink\/55 { color: rgba(236, 227, 213, 0.55); }
+.dark .text-ink\/50 { color: rgba(236, 227, 213, 0.5); }
+.dark .text-ink\/45 { color: rgba(236, 227, 213, 0.45); }
+.dark .text-ink\/40 { color: rgba(236, 227, 213, 0.4); }
+
+.dark .border-ink\/15 { border-color: rgba(236, 227, 213, 0.16); }
+.dark .border-ink\/10 { border-color: rgba(236, 227, 213, 0.12); }
+.dark .border-ink\/5 { border-color: rgba(236, 227, 213, 0.08); }
+
+/* Inputs inside admin dark */
+.dark input, .dark textarea, .dark select { color: #ECE3D5; }
+.dark input::placeholder, .dark textarea::placeholder { color: rgba(236, 227, 213, 0.4); }
